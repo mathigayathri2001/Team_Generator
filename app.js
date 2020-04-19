@@ -11,31 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
-
-
-//Employee array
+//Team array
 const Team = []
 
 //Manager specific questions
@@ -122,7 +98,7 @@ const interQs = [
     },
 ]
 
-//Prompt manager questions and then a list question
+//Prompt manager questions and then a addteamQs
 function managerQuestions() {
     inquirer
         .prompt(managerQs)
@@ -155,7 +131,7 @@ function addInternQs() {
         })
 }
 
-//List question prompts specific array when a certain choice is picked
+//addteamQs question prompts specific array when a certain choice is picked
 function addteamQs() {
     inquirer
         .prompt([{
@@ -166,26 +142,26 @@ function addteamQs() {
         }])
         .then(function (answers) {
             const teamMember = answers.teamMember
-
-            // Calls engineer questions array when engineer is selected
-            if (teamMember === "Engineer") {
-                addEngineerQs()
-
-                //Calls intern array when intern is selected
-            } else if (teamMember === "Intern") {
-                addInternQs()
-
-                //Writes the file when done is selected
-            } else {
-                const renderedOutput = render(Team)
-                fs.writeFile(outputPath, (renderedOutput), function (err) {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        console.log('Team was generated')
-                    }
-                })
+            switch (teamMember) {
+                case "Engineer":
+                    addEngineerQs()
+                    break;
+                case "Intern":
+                    addInternQs()
+                    break;
+                default:
+                    const renderedOutput = render(Team)
+                    fs.writeFile(outputPath, renderedOutput, function (err) {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            console.log('Team was generated')
+                        }
+                    })
+                    break;
             }
+
+
         })
 }
 
