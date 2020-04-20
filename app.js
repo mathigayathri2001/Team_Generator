@@ -20,7 +20,7 @@ const managerQs = [
         type: "input",
         message: "What is your manager's name?",
         name: "manager",
-         default: "Ram"
+         default: "Mathi"
     },
     {
         type: "input",
@@ -32,7 +32,7 @@ const managerQs = [
         type: "input",
         message: "What is your manager's email?",
         name: "managerEmail",
-         default: "Ram@gmail.com"
+         default: "Mathi@gmail.com"
     },
     {
         type: "input",
@@ -48,7 +48,7 @@ const engineerQs = [{
     type: "input",
     message: "What is your engineer's name?",
     name: "engineer",
-     default: "Tim"
+     default: "Raj"
 },
 {
     type: "input",
@@ -66,7 +66,7 @@ const engineerQs = [{
     type: "input",
     message: "What is the engineer's github username?",
     name: "engineerGithub",
-     default: "tim"
+     default: "raj"
 }
 ]
 
