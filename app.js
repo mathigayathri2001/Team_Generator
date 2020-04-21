@@ -160,11 +160,8 @@ function addteamQs() {
                     })
                     break;
             }
-
-
         })
 }
-
 
 //Prompts manager question to start app
 managerQuestions()
